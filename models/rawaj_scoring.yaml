@@ -87,7 +87,7 @@ threats:
   - id: T38
     target: feature_store
     category: I
-    title: "..."
+    title: "unauthorized internal services read sensitive customer features from storage"
     likelihood: 2
     impact: 5
     status: open
@@ -95,7 +95,7 @@ threats:
   - id: T27
     target: f08
     category: T
-    title: "Case decision altered in transit between the console and the case database"
+    title: "altered the choices sent from the control panel before they are saved in the database"
     likelihood: 2
     impact: 5
     status: mitigated
@@ -103,7 +103,7 @@ threats:
   - id: T28
     target: f08
     category: I
-    title: "Customer PII sniffed on the office network between console and case database"
+    title: "unauthorized listener steals unencrypted customer information by spying on the internal network traffic"
     likelihood: 3
     impact: 4
     status: mitigated
@@ -111,63 +111,63 @@ threats:
   - id: T29
     target: f08
     category: D
-    title: "Bulk case exports from the console saturate the link to the case database"
+    title: "huge CSV data extractions starve database bandwidth during peak hours"
     likelihood: 2
     impact: 3
     status: open
   - id: T30
     target: scorer
     category: E
-    title: "Code execution bug in the scorer inherits a service account with wide core network access"
+    title: "vulnerability in evaluation engine grants attackers core privileges"
     likelihood: 2
     impact: 5
     status: open
   - id: T31
     target: case_db
     category: T
-    title: "Flagged cases edited directly in the database so a mule account is cleared"
+    title: "hacker bypasses the system to delete fraud warnings from suspicious user profiles"
     likelihood: 2
     impact: 5
     status: open
   - id: T32
     target: analyst_console
     category: S
-    title: "Rogue process on the office network poses as the analyst console to the case database"
+    title: "fake system poses as a real one to trick the network into sending it info from the database"
     likelihood: 2
     impact: 4
     status: open
   - id: T33
     target: analyst_console
     category: T
-    title: "Console build tampered with so saved decisions differ from what the analyst chose"
+    title: "compromised website interface secretly changes user review details"
     likelihood: 1
     impact: 5
     status: open
   - id: T34
     target: analyst_console
     category: R
-    title: "Analyst denies closing a flagged case because the console logs no per-user actions"
+    title: "employees can deny responsibility for the review decisions they make without a tracking system to log actions"
     likelihood: 3
     impact: 3
     status: open
   - id: T35
     target: analyst_console
     category: I
-    title: "Console caches customer PII in browser storage on a shared office laptop"
+    title: "confidential client files are open on a computer screen unattended"
     likelihood: 3
     impact: 4
     status: open
   - id: T36
     target: analyst_console
     category: D
-    title: "Unbounded case search queries from the console lock up the case database"
+    title: "badly designed search queries overload the main storage servers crashing the database"
     likelihood: 3
     impact: 3
     status: open
   - id: T37
     target: analyst_console
     category: E
-    title: "Read-only analyst reaches case release actions because roles are checked only in the UI"
+    title: "attacker gains unauthorized admin controls because the system fails to verify the account's permissions for the request"
     likelihood: 3
     impact: 4
     status: open
