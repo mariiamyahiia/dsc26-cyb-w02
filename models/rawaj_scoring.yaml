@@ -24,7 +24,7 @@ flows:
   - {id: f05, source: scorer, target: case_db, data: [flag, explanation], protocol: tls, authenticated: true}
   - {id: f06, source: scorer, target: audit_log, data: [decision_record], protocol: tls, authenticated: true}
   - {id: f07, source: analyst, target: analyst_console, data: [case_decision], protocol: https, authenticated: true}
-  - {id: f08, source: analyst_console, target: case_db, data: [case_decision, customer_pii], protocol: postgres, authenticated: true}
+  - {id: f08, source: analyst_console, target: case_db, data: [case_decision, customer_pii], protocol: tls, authenticated: true}
 threats:
   - id: T1
     target: f01
@@ -83,3 +83,91 @@ threats:
   - {id: T24, target: scorer, category: R, title: Scorer cannot show which model version produced a past flag, likelihood: 3, impact: 4, status: open}
   - {id: T25, target: scorer, category: D, title: Crafted transfer graph with huge fan-out makes scoring take seconds, likelihood: 2, impact: 4, status: open}
   - {id: T26, target: case_db, category: D, title: Case database fills its disk during a scam wave and stops accepting flags, likelihood: 2, impact: 4, status: open}
+
+  - id: T38
+    target: feature_store
+    category: I
+    title: "..."
+    likelihood: 2
+    impact: 5
+    status: open
+
+  - id: T27
+    target: f08
+    category: T
+    title: "Case decision altered in transit between the console and the case database"
+    likelihood: 2
+    impact: 5
+    status: mitigated
+    mitigation: "TLS with certificate validation on the database connection; the console checks the server certificate"
+  - id: T28
+    target: f08
+    category: I
+    title: "Customer PII sniffed on the office network between console and case database"
+    likelihood: 3
+    impact: 4
+    status: mitigated
+    mitigation: "TLS enforced on the PostgreSQL listener and plaintext connections rejected in pg_hba"
+  - id: T29
+    target: f08
+    category: D
+    title: "Bulk case exports from the console saturate the link to the case database"
+    likelihood: 2
+    impact: 3
+    status: open
+  - id: T30
+    target: scorer
+    category: E
+    title: "Code execution bug in the scorer inherits a service account with wide core network access"
+    likelihood: 2
+    impact: 5
+    status: open
+  - id: T31
+    target: case_db
+    category: T
+    title: "Flagged cases edited directly in the database so a mule account is cleared"
+    likelihood: 2
+    impact: 5
+    status: open
+  - id: T32
+    target: analyst_console
+    category: S
+    title: "Rogue process on the office network poses as the analyst console to the case database"
+    likelihood: 2
+    impact: 4
+    status: open
+  - id: T33
+    target: analyst_console
+    category: T
+    title: "Console build tampered with so saved decisions differ from what the analyst chose"
+    likelihood: 1
+    impact: 5
+    status: open
+  - id: T34
+    target: analyst_console
+    category: R
+    title: "Analyst denies closing a flagged case because the console logs no per-user actions"
+    likelihood: 3
+    impact: 3
+    status: open
+  - id: T35
+    target: analyst_console
+    category: I
+    title: "Console caches customer PII in browser storage on a shared office laptop"
+    likelihood: 3
+    impact: 4
+    status: open
+  - id: T36
+    target: analyst_console
+    category: D
+    title: "Unbounded case search queries from the console lock up the case database"
+    likelihood: 3
+    impact: 3
+    status: open
+  - id: T37
+    target: analyst_console
+    category: E
+    title: "Read-only analyst reaches case release actions because roles are checked only in the UI"
+    likelihood: 3
+    impact: 4
+    status: open
