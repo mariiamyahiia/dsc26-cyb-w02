@@ -15,8 +15,6 @@ The AI first gave string values of numbers for the chance and effect scores of t
 
 ## In my own words
 
-<!-- One or two sentences each, written without AI. -->
-
 1. Why does a data store have no Spoofing threats in STRIDE per element, and where does that threat go instead?
 
 A data store is a place where data sits. it doesn’t reach out to parts of the system or claim to be something it’s not, so it can’t be "spoofed" like a user or service might. the real risks come from what touches the data store, like the programs or people accessing it, the passwords or keys they use and what data is being sent into it. if someone tries to pretend to be someone or mess with the data coming in, that’s where the danger lies. the data store itself doesn’t do anything on its own. it just holds what’s given to it
