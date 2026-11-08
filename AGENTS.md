@@ -8,7 +8,7 @@
 ## Conventions that differ from defaults
 - Load YAML with `yaml.safe_load` only. Never `yaml.load`, `FullLoader` or `UnsafeLoader`.
 - A score is valid only if `type(v) is int` and 1 to 5. `True` and `4.0` are not scores.
-- STRIDE order is S, T, R, I, D, E, not alphabetical. Gaps sort by ref, then STRIDE order.
+- Gaps sort by ref, then STRIDE order (S, T, R, I, D, E).
 - Zones, elements, flows and threats share one id space. A repeated id is DUPLICATE_ID.
 - Standard library and the pinned PyYAML only. Do not add packages.
 - Keep function names and signatures in `tmcheck/core.py`; the tests import them.
